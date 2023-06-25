@@ -1,0 +1,35 @@
+<mat-toolbar>
+  <span>Animes</span>
+</mat-toolbar>
+
+<div class="main">
+  <mat-form-field class="search-field">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Anime name..." value=""
+           (change)="onQueryChange()" [(ngModel)]="searchQuery">
+  </mat-form-field>
+
+  <div class="animes">
+
+    <mat-card class="anime" *ngFor="let item of items">
+      <mat-card-title-group>
+        <mat-card-title> {{ item.title }} </mat-card-title>
+        <mat-card-subtitle> {{ item.title_japanese }} </mat-card-subtitle>
+      </mat-card-title-group>
+      <img mat-card-image ngSrc="{{ item.images.jpg.image_url }}" alt="Card Image"
+           width="180" height="250" id="180" class="anime-image">
+      <mat-card-content>
+        {{ item.synopsis.slice(0, 300) + "..." }}
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
+  <mat-paginator pageSize="8" [pageSizeOptions]="[8, 16]"
+                 pageIndex="{{currentPage}}"
+                 length="{{ totalItems }}"
+                 (page)="onPageChange($event)"/>
+</div>
+
