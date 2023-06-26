@@ -1,0 +1,23 @@
+.main {
+  margin: 20px;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.animes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.anime {
+  margin: 5px;
+  padding: 5px;
+  max-width: 300px;
+}
+
+.anime-image {
+  align-self: center;
+}

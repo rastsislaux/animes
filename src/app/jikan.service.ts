@@ -9,7 +9,7 @@ export interface IAnimeSearchParams {
   limit?: number
 }
 
-export interface IJikanResponse {
+export interface IJikanPaginatedResponse {
   data: IJikanAnime[],
   pagination: IJikanPagination
 }
@@ -27,21 +27,46 @@ export interface IJikanPaginationItems {
   per_page: number
 }
 
-export interface IJikanAnime {
+export interface IJikanAnimeTitle {
+  type: string,
   title: string
+}
+
+export interface IJikanAnimeTheme {
+  openings: string[]
+  endings: string[]
+}
+
+export interface IJikanAnime {
+  mal_id: number,
+  title: string
+  titles: IJikanAnimeTitle[]
   title_japanese: string
   synopsis: string
   images: IJikanImages
+  genres: IJikanGenre[]
+  theme: IJikanAnimeTheme
 }
 
 export interface IJikanImages {
   jpg: IJikanImagesJpg
 }
 
+export interface IJikanGenre {
+  mal_id: number,
+  type: string,
+  name: string,
+  url: string
+}
+
 export interface IJikanImagesJpg {
   image_url: string,
   small_image_url: string,
   large_image_url: string
+}
+
+export interface IJikanResponse {
+  data: IJikanAnime
 }
 
 @Injectable({
@@ -51,12 +76,16 @@ export class JikanService {
 
   constructor(private http: HttpClient) { }
 
-  apiUrl = environment.jikanApiUrl
+  private apiUrl = environment.jikanApiUrl
 
-  getAnimeSearch(params: IAnimeSearchParams): Observable<IJikanResponse> {
-    return this.http.get<IJikanResponse>(this.apiUrl + "/anime", {
+  getAnimeSearch(params: IAnimeSearchParams): Observable<IJikanPaginatedResponse> {
+    return this.http.get<IJikanPaginatedResponse>(this.apiUrl + "/anime", {
       params: { ...params }
     })
+  }
+
+  getAnimeFullById(id: number): Observable<IJikanResponse> {
+    return this.http.get<IJikanResponse>(this.apiUrl + "/anime/" + id + "/full")
   }
 
 }

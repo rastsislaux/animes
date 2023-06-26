@@ -10,10 +10,19 @@ import {NgOptimizedImage} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { AnimeListComponent } from './anime-list/anime-list.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './header/header.component';
+import { AnimePageComponent } from './anime-page/anime-page.component';
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AnimeListComponent,
+    HeaderComponent,
+    AnimePageComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +33,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     NgOptimizedImage,
     HttpClientModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AppRoutingModule,
+    MatChipsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

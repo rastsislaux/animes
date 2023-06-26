@@ -1,0 +1,50 @@
+<mat-card class="anime">
+
+  <mat-card-title-group>
+    <mat-card-title>{{ anime.title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ anime.title_japanese }}
+
+      <h4>Other titles</h4>
+      <a *ngFor="let title of anime.titles">
+        «{{ title.title }}»,
+      </a>
+
+      <h4>Genres</h4>
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let genre of anime.genres">
+          {{ genre.name }}
+        </mat-chip>
+      </mat-chip-listbox>
+
+    </mat-card-subtitle>
+
+
+    <img mat-card-xl-image priority="1" ngSrc="{{ anime.images.jpg.large_image_url }}"
+         width="220" height="400" style="height: auto;" alt="Anime cover">
+  </mat-card-title-group>
+
+  <br>
+
+  <mat-card-content>
+    {{ anime.synopsis }}
+
+    <div class="themes">
+      <mat-card>
+        <mat-card-title class="theme-card">Openings</mat-card-title>
+        <mat-card-content>
+          <p *ngFor="let opening of anime.theme.openings">{{ opening }}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-title class="theme-card">Endings</mat-card-title>
+        <mat-card-content>
+          <p *ngFor="let ending of anime.theme.endings">{{ ending }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

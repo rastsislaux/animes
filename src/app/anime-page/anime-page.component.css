@@ -1,0 +1,19 @@
+.anime {
+  margin: 20px;
+  padding: 10px;
+}
+
+.themes {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 10px;
+  width: 100%;
+  justify-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.theme-card {
+  margin: 5px;
+  padding: 5px;
+}
