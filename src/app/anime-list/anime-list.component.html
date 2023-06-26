@@ -21,9 +21,10 @@
 
   </div>
 
-  <mat-paginator pageSize="8" [pageSizeOptions]="[8, 16]"
-                 pageIndex="{{currentPage}}"
-                 length="{{ totalItems }}"
+  <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[8, 16]"
+                 [pageIndex]="currentPage"
+                 [length]="totalItems"
                  (page)="onPageChange($event)"/>
+
 </div>
 

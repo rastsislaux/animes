@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { AnimePageComponent } from './anime-page/anime-page.component';
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonModule} from "@angular/material/button";
+import {YouTubePlayerModule} from "@angular/youtube-player";
 
 @NgModule({
   declarations: [
@@ -24,20 +25,21 @@ import {MatButtonModule} from "@angular/material/button";
     HeaderComponent,
     AnimePageComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatCardModule,
-    NgOptimizedImage,
-    HttpClientModule,
-    FormsModule,
-    MatPaginatorModule,
-    AppRoutingModule,
-    MatChipsModule,
-    MatButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatInputModule,
+        MatCardModule,
+        NgOptimizedImage,
+        HttpClientModule,
+        FormsModule,
+        MatPaginatorModule,
+        AppRoutingModule,
+        MatChipsModule,
+        MatButtonModule,
+        YouTubePlayerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

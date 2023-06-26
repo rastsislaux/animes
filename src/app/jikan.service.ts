@@ -9,8 +9,8 @@ export interface IAnimeSearchParams {
   limit?: number
 }
 
-export interface IJikanPaginatedResponse {
-  data: IJikanAnime[],
+export interface IJikanPaginatedResponse<Data> {
+  data: Data[],
   pagination: IJikanPagination
 }
 
@@ -37,6 +37,12 @@ export interface IJikanAnimeTheme {
   endings: string[]
 }
 
+export interface IJikanAnimeTrailer {
+  youtube_id: string,
+  url: string,
+  embed_url: string
+}
+
 export interface IJikanAnime {
   mal_id: number,
   title: string
@@ -46,6 +52,7 @@ export interface IJikanAnime {
   images: IJikanImages
   genres: IJikanGenre[]
   theme: IJikanAnimeTheme
+  trailer: IJikanAnimeTrailer
 }
 
 export interface IJikanImages {
@@ -65,8 +72,16 @@ export interface IJikanImagesJpg {
   large_image_url: string
 }
 
-export interface IJikanResponse {
-  data: IJikanAnime
+export interface IJikanVideoEpisode {
+  mal_id: string,
+  title: string,
+  episode: string,
+  url: string,
+  images: IJikanImages
+}
+
+export interface IJikanResponse<Data> {
+  data: Data
 }
 
 @Injectable({
@@ -78,14 +93,18 @@ export class JikanService {
 
   private apiUrl = environment.jikanApiUrl
 
-  getAnimeSearch(params: IAnimeSearchParams): Observable<IJikanPaginatedResponse> {
-    return this.http.get<IJikanPaginatedResponse>(this.apiUrl + "/anime", {
+  getAnimeSearch(params: IAnimeSearchParams): Observable<IJikanPaginatedResponse<IJikanAnime>> {
+    return this.http.get<IJikanPaginatedResponse<IJikanAnime>>(this.apiUrl + "/anime", {
       params: { ...params }
     })
   }
 
-  getAnimeFullById(id: number): Observable<IJikanResponse> {
-    return this.http.get<IJikanResponse>(this.apiUrl + "/anime/" + id + "/full")
+  getAnimeFullById(id: number): Observable<IJikanResponse<IJikanAnime>> {
+    return this.http.get<IJikanResponse<IJikanAnime>>(this.apiUrl + "/anime/" + id + "/full")
+  }
+
+  getAnimeVideoEpisodes(id: number): Observable<IJikanPaginatedResponse<IJikanVideoEpisode>> {
+    return this.http.get<IJikanPaginatedResponse<IJikanVideoEpisode>>(this.apiUrl + "/anime/" + id +  "/videos/episodes")
   }
 
 }

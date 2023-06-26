@@ -17,3 +17,19 @@
   margin: 5px;
   padding: 5px;
 }
+
+.youtube-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.episodes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.episode {
+  padding: 10px;
+}

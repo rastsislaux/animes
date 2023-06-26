@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IJikanAnime, IJikanPaginatedResponse, JikanService} from "../jikan.service";
 import {PageEvent} from "@angular/material/paginator";
 
@@ -7,7 +7,7 @@ import {PageEvent} from "@angular/material/paginator";
   templateUrl: './anime-list.component.html',
   styleUrls: ['./anime-list.component.css']
 })
-export class AnimeListComponent {
+export class AnimeListComponent implements OnInit {
   constructor(private jikanService: JikanService) { }
 
   items: IJikanAnime[] = [];
@@ -23,7 +23,7 @@ export class AnimeListComponent {
       limit: this.pageSize
     }
     this.jikanService.getAnimeSearch(params).subscribe(
-      (resp: IJikanPaginatedResponse) => {
+      (resp) => {
         this.items = resp.data;
         this.totalItems = resp.pagination.items.total;
       }
@@ -31,12 +31,12 @@ export class AnimeListComponent {
   }
 
   onQueryChange() {
+    this.currentPage = 0;
     this.updateAnimes();
   }
 
   onPageChange(event: PageEvent) {
-    this.currentPage = event.pageIndex;
-    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex
     this.updateAnimes();
   }
 

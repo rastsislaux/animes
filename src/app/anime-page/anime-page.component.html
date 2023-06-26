@@ -29,6 +29,20 @@
   <mat-card-content>
     {{ anime.synopsis }}
 
+    <br>
+    <div class="youtube-wrapper">
+      <youtube-player [videoId]="anime.trailer.youtube_id"/>
+    </div>
+
+    <div class="episodes">
+      <mat-card class="episode" *ngFor="let episode of episodes.reverse()">
+        <mat-card-title-group>
+          <mat-card-title>{{ episode.title }}</mat-card-title>
+          <mat-card-subtitle>{{ episode.episode }}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card>
+    </div>
+
     <div class="themes">
       <mat-card>
         <mat-card-title class="theme-card">Openings</mat-card-title>
